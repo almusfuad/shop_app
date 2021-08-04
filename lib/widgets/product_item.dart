@@ -34,10 +34,10 @@ class ProductItem extends StatelessWidget {
         footer: GridTileBar(
           backgroundColor: Colors.black87,
           leading: Consumer<Product>(
-            //only the favourite tab is affected
+            //only the favourite tab is affected by consumer
             builder: (ctx, product, _) => IconButton(
               icon: Icon(
-                product.isFavourite ? Icons.favorite : Icons.favorite_border,
+                product.isFavorite ? Icons.favorite : Icons.favorite_border,
               ),
               onPressed: () {
                 product.toggleFavouriteStatus();
