@@ -1,8 +1,11 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
 
 import './product.dart';
 
-class ProductsProvider with ChangeNotifier {
+class Products with ChangeNotifier {
   List<Product> _items = [
     Product(
       id: 'p1',
@@ -37,7 +40,6 @@ class ProductsProvider with ChangeNotifier {
           'https://upload.wikimedia.org/wikipedia/commons/thumb/1/14/Cast-Iron-Pan.jpg/1024px-Cast-Iron-Pan.jpg',
     ),
   ];
-
   // var _showFavoritesOnly = false;
 
   List<Product> get items {
@@ -51,7 +53,7 @@ class ProductsProvider with ChangeNotifier {
     return _items.where((prodItem) => prodItem.isFavorite).toList();
   }
 
-  Product findBy(String id) {
+  Product findById(String id) {
     return _items.firstWhere((prod) => prod.id == id);
   }
 
@@ -66,6 +68,18 @@ class ProductsProvider with ChangeNotifier {
   // }
 
   void addProduct(Product product) {
+    const url =
+        'https://flutter-newapp-default-rtdb.asia-southeast1.firebasedatabase.app/products.json';
+    http.post(
+      url,
+      body: json.encode({
+        'title': product.title,
+        'description': product.description,
+        'imageUrl': product.imageUrl,
+        'price': product.price,
+        'isFavorite': product.isFavorite,
+      }),
+    );
     final newProduct = Product(
       title: product.title,
       description: product.description,
@@ -74,6 +88,7 @@ class ProductsProvider with ChangeNotifier {
       id: DateTime.now().toString(),
     );
     _items.add(newProduct);
+    // _items.insert(0, newProduct); // at the start of the list
     notifyListeners();
   }
 
@@ -82,7 +97,9 @@ class ProductsProvider with ChangeNotifier {
     if (prodIndex >= 0) {
       _items[prodIndex] = newProduct;
       notifyListeners();
-    } else {}
+    } else {
+      print('...');
+    }
   }
 
   void deleteProduct(String id) {

@@ -2,22 +2,22 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '../widgets/app_drawer.dart';
-import '../screens/cart_screen.dart';
 import '../widgets/products_grid.dart';
 import '../widgets/badge.dart';
 import '../providers/cart.dart';
+import './cart_screen.dart';
 
-enum FilterOption {
+enum FilterOptions {
   Favorites,
   All,
 }
 
-class ProductOverviewScreen extends StatefulWidget {
+class ProductsOverviewScreen extends StatefulWidget {
   @override
-  _ProductOverviewScreenState createState() => _ProductOverviewScreenState();
+  _ProductsOverviewScreenState createState() => _ProductsOverviewScreenState();
 }
 
-class _ProductOverviewScreenState extends State<ProductOverviewScreen> {
+class _ProductsOverviewScreenState extends State<ProductsOverviewScreen> {
   var _showOnlyFavorites = false;
 
   @override
@@ -27,24 +27,26 @@ class _ProductOverviewScreenState extends State<ProductOverviewScreen> {
         title: Text('MyShop'),
         actions: <Widget>[
           PopupMenuButton(
-            onSelected: (FilterOption selectedValue) {
+            onSelected: (FilterOptions selectedValue) {
               setState(() {
-                if (selectedValue == FilterOption.Favorites) {
+                if (selectedValue == FilterOptions.Favorites) {
                   _showOnlyFavorites = true;
                 } else {
                   _showOnlyFavorites = false;
                 }
               });
             },
-            icon: Icon(Icons.more_vert),
+            icon: Icon(
+              Icons.more_vert,
+            ),
             itemBuilder: (_) => [
               PopupMenuItem(
-                child: Text('Show Favourites'),
-                value: FilterOption.Favorites,
+                child: Text('Only Favorites'),
+                value: FilterOptions.Favorites,
               ),
               PopupMenuItem(
-                child: Text('Show all'),
-                value: FilterOption.All,
+                child: Text('Show All'),
+                value: FilterOptions.All,
               ),
             ],
           ),

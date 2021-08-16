@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:flutter/foundation.dart';
 
 import './cart.dart';
 
@@ -11,8 +11,8 @@ class OrderItem {
   OrderItem({
     @required this.id,
     @required this.amount,
-    @required this.dateTime,
     @required this.products,
+    @required this.dateTime,
   });
 }
 
