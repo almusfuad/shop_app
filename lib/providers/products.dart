@@ -144,7 +144,7 @@ class Products with ChangeNotifier {
 
   Future<void> deleteProduct(String id) async {
     final url =
-        'https://flutter-newapp-default-rtdb.asia-southeast1.firebasedatabase.app/products/$id.json';
+        'https://flutter-newapp-default-rtdb.asia-southeast1.firebasedatabase.app/products.json';
 
     final existingProductIndex = _items.indexWhere((prod) => prod.id == id);
     var existingProduct = _items[existingProductIndex];
