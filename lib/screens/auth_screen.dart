@@ -128,7 +128,7 @@ class _AuthCardState extends State<AuthCard>
         )).animate(
       CurvedAnimation(parent: _controller, curve: Curves.fastOutSlowIn),
     );
-    _heightAnimation.addListener(() => setState(() {}));
+    // _heightAnimation.addListener(() => setState(() {}));
   }
 
   @override
@@ -212,7 +212,7 @@ class _AuthCardState extends State<AuthCard>
       _controller.forward();
     } else {
       setState(() {
-        _authMode = AuthMode.SignUp;
+        _authMode = AuthMode.Login;
       });
       _controller.reverse();
     }
@@ -226,9 +226,11 @@ class _AuthCardState extends State<AuthCard>
         borderRadius: BorderRadius.circular(10.0),
       ),
       elevation: 8.0,
-      child: Container(
-        // height: _authMode == AuthMode.SignUp ? 320 : 260,
-        height: _heightAnimation.value.height,
+      child: AnimatedContainer(
+        duration: Duration(milliseconds: 300),
+        curve: Curves.easeIn,
+        height: _authMode == AuthMode.SignUp ? 320 : 260,
+        // height: _heightAnimation.value.height,
         constraints:
             BoxConstraints(minHeight: _authMode == AuthMode.SignUp ? 320 : 260),
         width: deviceSize.width * 0.75,
