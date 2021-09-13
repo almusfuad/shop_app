@@ -1,3 +1,5 @@
+// ignore_for_file: deprecated_member_use
+
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -33,7 +35,6 @@ class CartScreen extends StatelessWidget {
                     label: Text(
                       '\$${cart.totalAmount.toStringAsFixed(2)}',
                       style: TextStyle(
-                        // ignore: deprecated_member_use
                         color:
                             Theme.of(context).primaryTextTheme.overline.color,
                       ),
