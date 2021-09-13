@@ -1,3 +1,5 @@
+// ignore_for_file: deprecated_member_use
+
 import 'dart:math';
 
 import 'package:flutter/material.dart';
@@ -64,8 +66,8 @@ class AuthScreen extends StatelessWidget {
                       child: Text(
                         'MyShop',
                         style: TextStyle(
-                          // ignore: deprecated_member_use
-                          color: Theme.of(context).accentTextTheme.title.color,
+                          color:
+                              Theme.of(context).accentTextTheme.overline.color,
                           fontSize: 50,
                           fontWeight: FontWeight.normal,
                           fontFamily: 'Anton',
